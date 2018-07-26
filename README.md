@@ -67,3 +67,23 @@ app.UseSwaggerUI(c =>
 * Use https://resources.azure.com to flip the clientCertEnabled property to true
 
 #### Note This step just enforces certificate but does not perform Certificate Validation, See: https://docs.microsoft.com/en-gb/azure/app-service/app-service-web-configure-tls-mutual-auth for more details
+
+---
+
+# Generate SSL Cert in PowerShell
+
+* `New-SelfSignedCertificate -DnsName "cert-customer-api.azurewebsites.net" -CertStoreLocation "cert:\LocalMachine\My"`
+
+``` PowerShell 
+PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\My
+
+Thumbprint                                Subject
+----------                                -------
+F15FEEB8AC6B3F85D59DFD7AF3F8B53B01737436  CN=cert-customer-api.azurewebsites.net
+```
+
+* Export pfx
+``` PowerShell
+$mypwd = ConvertTo-SecureString -String "SecurePassword100!" -Force -AsPlainText
+Get-ChildItem -Path cert:\localMachine\my\F15FEEB8AC6B3F85D59DFD7AF3F8B53B01737436 | Export-PfxCertificate -FilePath C:\mypfx.pfx -Password $mypwd
+```
