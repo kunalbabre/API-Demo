@@ -87,3 +87,11 @@ F15FEEB8AC6B3F85D59DFD7AF3F8B53B01737436  CN=cert-customer-api.azurewebsites.net
 $mypwd = ConvertTo-SecureString -String "SecurePassword100!" -Force -AsPlainText
 Get-ChildItem -Path cert:\localMachine\my\F15FEEB8AC6B3F85D59DFD7AF3F8B53B01737436 | Export-PfxCertificate -FilePath C:\mypfx.pfx -Password $mypwd
 ```
+
+# Other Reference APIs
+
+* Open API: http://conferenceapi.azurewebsites.net/?format=json
+* SOAP: https://orders20180725094429.azurewebsites.net/Service.svc?singleWsdl
+* SOAP: https://fazioapisoap.azurewebsites.net/FazioService.svc?singleWsdl
+* Cert: https://cert-customer-api.azurewebsites.net/swagger/
+
